@@ -25,16 +25,23 @@ public class FunFactsActivity extends Activity {
         super.onSaveInstanceState(outState);
 
         outState.putString(KEY_FACT, mFact);
-
         outState.putInt(KEY_COLOR, mColor);
     }
 
     @Override
+    protected void onRestoreInstanceState (Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+            mFact = savedInstanceState.getString(KEY_FACT);
+            mFactLabel.setText(mFact);
+            mColor = savedInstanceState.getInt(KEY_COLOR);
+            mRelativeLayout.setBackgroundColor(mColor);
+            mShowFactButton.setTextColor(mColor);
+        }
+    @Override
     protected void  onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fun_facts);
-
-
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_fun_facts);
 
 
           // Declare our View variables and assign them the Views from the layout file
